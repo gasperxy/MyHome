@@ -2,6 +2,7 @@ package com.example.gasper.myhome;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,11 +68,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             super(v);
             vName = (TextView) v.findViewById(R.id.name);
             status = (Switch) v.findViewById(R.id.switch1);
+            status.setOnClickListener(this);
+
 
         }
 
         @Override
         public void onClick(View v) {
+            Log.e("tag", "click");
+           new TurnOnTask().execute("set HUEDevice4 on");
+
+
 
 
 
