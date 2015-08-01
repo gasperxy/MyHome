@@ -1,5 +1,9 @@
 package com.example.gasper.myhome;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -28,4 +32,30 @@ public class Room implements Serializable {
     public void setName(String name){
         this.roomName = name;
     }
+
+    public  String toJson(){
+        try{
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("roomName", this.roomName);
+
+            JSONArray json = new JSONArray();
+            for(Light light : lights){
+                JSONObject tmp = new JSONObject();
+                tmp.put("status", light.getStatus());
+                tmp.put("name", light.getName());
+                tmp.put("ui", light.getUid());
+                json.put(tmp);
+            }
+            jsonObject.put("lights", json);
+
+            return jsonObject.toString();
+
+
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

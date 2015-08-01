@@ -2,10 +2,10 @@ package com.example.gasper.myhome;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -64,19 +64,40 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         protected Switch status;
 
 
+
         public ViewHolder(View v) {
             super(v);
             vName = (TextView) v.findViewById(R.id.name);
             status = (Switch) v.findViewById(R.id.switch1);
-            status.setOnClickListener(this);
+            status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Light light = lights.get(getPosition());
+                    if(light.isOn){
+                        light.turnOff();
+                    }
+                    else{
+                        light.turnOn();
+                    }
+
+                }
+            });
 
 
         }
 
         @Override
         public void onClick(View v) {
-            Log.e("tag", "click");
-           new TurnOnTask().execute("set HUEDevice4 on");
+            /*Log.e("tag", "click");
+            if(status.isChecked()){
+                lights.get(getPosition()).turnOn();
+
+            }
+            else{
+                lights.get(getPosition()).turnOff();
+
+            }*/
 
 
 

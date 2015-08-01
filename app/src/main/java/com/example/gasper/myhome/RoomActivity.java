@@ -62,12 +62,14 @@ public class RoomActivity extends ActionBarActivity {
                 dialog.setView(lin);
                 dialog.setTitle("Add new light");
                 final EditText edit = (EditText) lin.findViewById(R.id.editText2);
+                final EditText edit1 = (EditText) lin.findViewById(R.id.editText3);
 
                 dialog.setPositiveButton("Add light", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String lightName = edit.getText().toString();
-                        Light new_light = new Light(lightName, 1);
+                        String lightUid = edit1.getText().toString();
+                        Light new_light = new Light(lightName, lightUid);
                         room.addLight(new_light);
 
 

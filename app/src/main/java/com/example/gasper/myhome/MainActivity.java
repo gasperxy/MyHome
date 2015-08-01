@@ -120,8 +120,14 @@ public class MainActivity extends ActionBarActivity {
 
 
         ArrayList<Light> lights = new ArrayList<Light>();
+        Light light = new Light("luč1", "HUEDevice3");
+        lights.add(light);
+        
 
         this.rooms = new ArrayList<Room>();
+        Room room = new Room("klet", lights);
+
+        rooms.add(room);
         /*for(int i=1; i<= 10; i++){
             Room room = new Room(("Room " + Integer.toString(i)), lights);
             this.rooms.add(room);
